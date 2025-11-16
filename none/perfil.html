@@ -1,0 +1,13 @@
+##perfil(Tela de Customização)
+<h1 id="titulo">Título original</h1>
+<button id="trocar">Mudar texto</button>
+
+<script>
+  const h1 = document.querySelector("#titulo");
+  const botao = document.querySelector("#trocar");
+
+  botao.addEventListener("click", () => {
+    h1.innerText = "Texto modificado via DOM!";
+    h1.style.color = "blue";
+  });
+</script>

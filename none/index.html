@@ -1,0 +1,166 @@
+##index(Tela de Identificação)
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarefas</title>
+  </head>
+  <body>
+    <h1>Perfil</h1>
+    <div class="container_1">
+      <input
+        type="text"
+        id="userEmail"
+        placeholder="Digite seu email"
+      />
+      <div class="btns-container">
+        <button id="adicionar-tarefa">Adicionar</button><br><br>
+        <button id="limpar-tarefas">Limpar</button><br><br>
+      </div>
+    </div>
+    <ol id="lista-tarefas"></ol>
+
+    <script>
+      // Elementos
+      const inputTarefa = document.getElementById("userEmail");
+      const btnAdicionar = document.getElementById("adicionar-tarefa");
+      const btnLimpar = document.getElementById("limpar-tarefas");
+      const lista = document.getElementById("lista-tarefas");
+
+  // MOD: adicionado - estrutura para persistência (array de tarefas) e contador
+  let tarefas = [];
+  let contar = 1; // id incremental simples
+
+      // MOD: adicionado - função para salvar o array 'tarefas' no localStorage
+      function salvarTarefas() {
+        localStorage.setItem("tarefas", JSON.stringify(tarefas));
+      }
+
+      // MOD: adicionado - função para carregar o array 'tarefas' do localStorage
+      function carregarTarefas() {
+        const dado = localStorage.getItem("tarefas");
+        if (dado) {
+          try {
+            tarefas = JSON.parse(dado);
+            // garantir que o contador continue após o maior id existente
+            const ids = tarefas.map(t => t.id);
+            if (ids.length) contar = Math.max(...ids) + 1;
+          } catch (e) {
+            tarefas = [];
+          }
+        }
+      }
+
+  // MOD: adicionado - renderiza DOM a partir do array 'tarefas'
+  // (inclui span separado para texto e span para botões; btnConcluir label é ajustado aqui)
+  function renderizar() {
+        lista.innerHTML = "";
+        tarefas.forEach((t) => {
+          const li = document.createElement("li");
+          li.id = "li_" + t.id;
+
+          // MOD: adicionado - span para o texto (aplica riscado apenas no texto)
+          // span para o texto (para aplicar apenas neste elemento o risco)
+          const texto = document.createElement("span");
+          texto.className = "task-text";
+          texto.textContent = t.text;
+          if (t.done) {
+            texto.style.textDecoration = "line-through";
+            texto.style.opacity = "0.7";
+          } else {
+            texto.style.textDecoration = "";
+            texto.style.opacity = "1";
+          }
+
+          // MOD: adicionado - span que contém os botões (botões agrupados à direita)
+          // span que contém os botões (markup similar ao original)
+          const spanBtns = document.createElement("span");
+          spanBtns.id = "span_" + t.id;
+
+          const btnEditar = document.createElement("button");
+          btnEditar.textContent = "Editar";
+          btnEditar.id = "editar_" + t.id;
+
+          const btnApagar = document.createElement("button");
+          btnApagar.textContent = "Apagar";
+          btnApagar.id = "apagar_" + t.id;
+
+          // MOD: adicionado - label do botão 'Concluir' muda para 'Desfazer' quando t.done === true
+          const btnConcluir = document.createElement("button");
+          btnConcluir.textContent = t.done ? "Desfazer" : "Concluir";
+          btnConcluir.id = "concluir_" + t.id;
+
+          spanBtns.appendChild(btnEditar);
+          spanBtns.appendChild(btnApagar);
+          spanBtns.appendChild(btnConcluir);
+
+          li.appendChild(texto);
+          li.appendChild(spanBtns);
+          lista.appendChild(li);
+        });
+      }
+
+  // MOD: alterado - ao adicionar, criamos um objeto no array 'tarefas' e salvamos no localStorage
+  // Adicionar nova tarefa (e salvar)
+      btnAdicionar.addEventListener("click", () => {
+        const valor = inputTarefa.value && inputTarefa.value.trim();
+        if (!valor) return; // nada a adicionar
+
+        const nova = { id: contar++, text: valor, done: false };
+        tarefas.push(nova);
+        salvarTarefas();
+        renderizar();
+        inputTarefa.value = "";
+      });
+
+  // MOD: alterado - limpar zera o array 'tarefas' e atualiza o localStorage
+  // Limpar todas (remover do DOM e do storage)
+      btnLimpar.addEventListener("click", () => {
+        tarefas = [];
+        salvarTarefas();
+        renderizar();
+      });
+
+      // Delegação de eventos para os botões dentro da lista
+      lista.addEventListener("click", (evento) => {
+        const alvo = evento.target;
+        if (!alvo.matches("button")) return;
+        const partes = alvo.id.split("_"); // ex: apagar_3
+        const acao = partes[0];
+        const idNum = Number(partes[1]);
+        const idx = tarefas.findIndex((t) => t.id === idNum);
+        if (idx === -1) return;
+
+        if (acao === "apagar") {
+          // MOD: adicionado - pergunta de confirmação antes de apagar (confirm())
+          const confirmar = confirm(
+            "Tem certeza que deseja apagar esta tarefa?"
+          );
+          if (confirmar) {
+            tarefas.splice(idx, 1);
+            salvarTarefas();
+            renderizar();
+          }
+        } else if (acao === "editar") {
+          const atual = tarefas[idx].text;
+          const novo = prompt("Edite a tarefa:", atual);
+          if (novo !== null) {
+            tarefas[idx].text = novo;
+            salvarTarefas();
+            renderizar();
+          }
+        } else if (acao === "concluir") {
+          // MOD: alterado - toggle do estado 'done' no objeto tarefa; label do botão é atualizada via render
+          tarefas[idx].done = !tarefas[idx].done;
+          salvarTarefas();
+          renderizar();
+        }
+      });
+
+      // inicialização: carregar do localStorage e renderizar
+      carregarTarefas();
+      renderizar();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>criar perfil</title>
+
+    <style>
+        .userData {
+            position: relative;
+            width: 300px;
+            margin: 20px 0;
+        }
+
+        .userData input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+            font-size: 16px;
+            outline: none;
+            background: none;
+        }
+
+        .userData input:focus {
+            border-bottom: 4px solid #4A90E2;
+        }
+
+        .userData label {
+            position: absolute;
+            left: 0;
+            top: -10px;
+            color: #777;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .userData input:focus + label,
+        .userData input:valid + label {
+            top: -12px;
+            font-size: 12px;
+            color: #4A90E2;
+        }
+    </style>
+
+    <style>
+    .userTheme select { 
+        appearance: none;
+        -webkit-appearance: slider-vertical;            
+        width : 10% ;
+        font-size: 13px ; 
+        padding: 8px 0;       
+        background-color : #e5ebf1 ; 
+        border : none ;         
+        color: hsl(239, 65%, 55%);
+        
+    }
+    </style>
+
+    <style>
+    .userFormat select {
+        appearance: none;
+        -webkit-appearance: slider-vertical;            
+        width : 10% ;
+        font-size: 13px ; 
+        padding: 8px 0;       
+        background-color : #e5ebf1 ; 
+        border : none ;         
+        color: hsl(239, 65%, 55%);
+        
+    }
+    </style>
+
+    <style>
+    .userLang select {
+        appearance: none;
+        -webkit-appearance: slider-vertical;            
+        width : 15% ;
+        font-size: 13px ; 
+        padding: 8px 0;       
+        background-color : #e5ebf1 ; 
+        border : none ;         
+        color: hsl(239, 65%, 55%);
+        
+    }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">Cadastrar</h1><br>
+
+    <div class="userData">
+        <input type="email" id="email">
+        <label for="email">E-mail</label>
+    </div>
+
+    <div class="userData">
+        <input type="text" id="name" >
+        <label for="name">Nome</label>
+    </div>
+
+    <div class="userData">
+        <input id="age" type="number" >
+        <label for="age">Idade</label>
+    </div>
+
+    <h4 class="userPreferency">Preferências</h4>
+
+    <div class="userTheme">
+    </select>
+    <label for="userTheme">Tema:</label>
+    <select name="theme" id="userTheme">
+        <option value="Claro">White</option>
+        <option value="Escuro">Dark</option>
+    </select></div>
+
+    <br><br>
+
+    <div class="userFormat">
+    </select>
+    <label for="userFormat">Formatação:</label>
+    <select name="format" id="userFormat">
+        <option value="Azul">Azul</option>
+        <option value="Preto">Escuro</option>
+        <option value="Verde">Verde</option>
+    </select></div>
+
+    <br><br>
+
+    <div class="userLang">
+    </select>
+    <label for="userLang">Idioma:</label>
+    <select name="format" id="userLang">
+        <option value="Português">Português</option>
+        <option value="English">English</option>
+        <option value="Espanhol">Espanhol</option>
+    </select></div>
+
+    <br><br>
+
+    <button onclick="createUser()">Salvar</button>
+
+    <pre id="saida"></pre>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
