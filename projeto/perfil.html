@@ -5,11 +5,34 @@
     <meta charset="UTF-8">
     <title>criar perfil</title>
 
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        h1, h6, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+    </style>
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+    </style>
+
     <style>
         .userData {
             position: relative;
             width: 300px;
             margin: 20px 0;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-align: center;
         }
 
         .userData input {
@@ -17,13 +40,16 @@
             border: none;
             border-bottom: 1px solid #ccc;
             padding: 8px 0;
-            font-size: 16px;
+            font-size: 12px;
             outline: none;
             background: none;
+            display: inline;
+            font-weight: 500;
+            letter-spacing: 3px;
         }
 
         .userData input:focus {
-            border-bottom: 4px solid #4A90E2;
+            border-bottom: 1px solid #767575;
         }
 
         .userData label {
@@ -33,13 +59,16 @@
             color: #777;
             font-size: 14px;
             transition: 0.2s;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-align: center;
         }
 
-        .userData input:focus + label,
-        .userData input:valid + label {
-            top: -12px;
-            font-size: 12px;
-            color: #4A90E2;
+        .userData input:focus + label ,
+        .userData input:valid {
+            top: -6px;
+            font-size: 14px;
+            color: #3226da;
         }
     </style>
 
@@ -53,6 +82,9 @@
         background-color : #e5ebf1 ; 
         border : none ;         
         color: hsl(239, 65%, 55%);
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-align: center;
         
     }
     </style>
@@ -67,6 +99,10 @@
         background-color : #e5ebf1 ; 
         border : none ;         
         color: hsl(239, 65%, 55%);
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-align: center;
+        
         
     }
     </style>
@@ -81,6 +117,9 @@
         background-color : #e5ebf1 ; 
         border : none ;         
         color: hsl(239, 65%, 55%);
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-align: center;
         
     }
     </style>
@@ -96,7 +135,7 @@
     </div>
 
     <div class="userData">
-        <input type="text" id="name" >
+        <input id="name" type="text" >
         <label for="name">Nome</label>
     </div>
 
@@ -105,7 +144,7 @@
         <label for="age">Idade</label>
     </div>
 
-    <h4 class="userPreferency">Preferências</h4>
+    <h5 class="userPreferency">Preferências</h5>
 
     <div class="userTheme">
     </select>
@@ -140,6 +179,10 @@
     <br><br>
 
     <button onclick="createUser()">Salvar</button>
+    <br></br>
+
+    <h6 class="userPreferency">Já possui um perfil?</h6>
+    <button onclick="window.location.href='index.html'">entrar</button>
 
     <pre id="saida"></pre>
 

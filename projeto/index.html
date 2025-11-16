@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>acessar perfil</title>
+
+    <style>
+        .userData {
+            position: relative;
+            width: 300px;
+            margin: 20px 0;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        .userData input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+            font-size: 16px;
+            outline: none;
+            background: none;
+            font-weight: 700;
+            letter-spacing: 3px;            
+        }
+
+        .userData input:focus {
+            border-bottom: 4px solid #4A90E2;
+        }
+
+        .userData label {
+            position: absolute;
+            left: 0;
+            top: -10px;
+            color: #777;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .userData input:focus + label,
+        .userData input:valid + label {
+            top: -12px;
+            font-size: 12px;
+            color: #4A90E2;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+    </style>
+    <style>
+        h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 class="title">Perfil</h1><br>
+    <h5 class="message1">Bem-vindo(a) de volta.</h5>
+    <h5 class="message2">Iniciar sessão com o seu e-mail.</h5><br>
+
+    <div class="userData">
+        <input type="email" id="email">
+        <label for="email">E-mail</label>
+    </div>
+
+    <br><br>
+
+    <button onclick="getUser()">Entrar</button>
+
+    <br></br>
+
+    <h5 class="userPreferency">Deseja criar um perfil?</h5>
+
+    <button onclick="window.location.href='perfil.html'">Cadastrar-se</button>
+
+    <pre id="saida"></pre>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

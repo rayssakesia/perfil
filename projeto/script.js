@@ -50,3 +50,9 @@ function getUser (email) {
     localStorage.getElementById(email);
     document.getElementById("saida").textContent = userText;
 }
+
+
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(div => div.style.display = 'none');
+  document.getElementById('page' + p).style.display = 'block';
+}
