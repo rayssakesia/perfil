@@ -12,8 +12,35 @@ function createUser() {
     } else {
     
     localStorage.setItem(user.email, JSON.stringify(user))
+        alert(`Perfil salvo com sucesso!`);
     }
 
+}
+
+function deleteUser(email) {
+        if (!validateEmail(email)) {        
+        return;
+    }
+
+    const user = localStorage.getItem(email.value);
+
+    if (!user) {
+        alert("Usuário não cadastrado!");
+        localStorage.setItem("temporary_email", null);
+        window.location.href = "perfil.html";
+    
+
+    } else {
+
+     localStorage.removeItem(email.value);
+
+    alert(`Perfil removido !`);
+
+    localStorage.setItem(email, null);
+
+    window.location.href='index.html';
+
+}
 }
 
 function Logout (email) {
