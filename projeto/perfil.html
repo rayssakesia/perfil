@@ -125,9 +125,9 @@
     </style>
 </head>
 
-<body>
+<body onload="iniciarPerfil()">
 
-    <h1 class="title">Cadastrar</h1><br>
+    <h1 class="title">Perfil</h1><br>
 
     <div class="userData">
         <input type="email" id="email">
@@ -150,15 +150,15 @@
     </select>
     <label for="userTheme">Tema:</label>
     <select name="theme" id="userTheme">
-        <option value="Claro">White</option>
-        <option value="Escuro">Dark</option>
+        <option value="Claro">Claro</option>
+        <option value="Escuro">Escuro</option>
     </select></div>
 
     <br><br>
 
     <div class="userFormat">
     </select>
-    <label for="userFormat">Formatação:</label>
+    <label for="userFormat">Cor da Fonte:</label>
     <select name="format" id="userFormat">
         <option value="Azul">Azul</option>
         <option value="Preto">Escuro</option>
@@ -170,7 +170,7 @@
     <div class="userLang">
     </select>
     <label for="userLang">Idioma:</label>
-    <select name="format" id="userLang">
+    <select name="lang" id="userLang">
         <option value="Português">Português</option>
         <option value="English">English</option>
         <option value="Espanhol">Espanhol</option>
@@ -181,12 +181,11 @@
     <button onclick="createUser()">Salvar</button>
     <br></br>
 
-    <h6 class="userPreferency">Já possui um perfil?</h6>
-    <button onclick="window.location.href='index.html'">entrar</button>
+    <button onclick="Logout(email)">Sair</button>
 
-    <pre id="saida"></pre>
+    <pre id="out"></pre>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
 </body>
 
