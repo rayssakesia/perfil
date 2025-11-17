@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" >
 
 <head>
     <meta charset="UTF-8">
@@ -76,7 +76,7 @@
     .userTheme select { 
         appearance: none;
         -webkit-appearance: slider-vertical;            
-        width : 10% ;
+        width : 20% ;
         font-size: 13px ; 
         padding: 8px 0;       
         background-color : #e5ebf1 ; 
@@ -108,7 +108,7 @@
     </style>
 
     <style>
-    .userLang select {
+    .font select {
         appearance: none;
         -webkit-appearance: slider-vertical;            
         width : 15% ;
@@ -123,9 +123,78 @@
         
     }
     </style>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+
+        }
+        body.root input,
+        body.root select,
+        body.root label {
+            color: #0b0a0a;
+        }  
+        
+        .sepia {
+           --bg-color: #f4ecd8;
+           --text-color: #4b3b2f;
+        }
+        body.sepia input,
+        body.sepia select,
+        body.sepia label {
+            color: #0b0a0a;
+        }
+
+        .amoled {
+           --bg-color: #000;
+           --text-color: #fff;
+        }
+        body.amoled input,
+        body.amoled select{
+            color: white !important;
+            background-color: #2c2b2b;
+            border-color: #666;
+
+        }
+        body.amoled option {
+            color: white;
+            background-color: #333;
+        }
+        
+        body.amoled label {
+            color: #f3f3f3;
+        }
+        
+        body {
+           background-color: var(--bg-color);
+           color: var(--text-color);
+           transition: background-color 0.3s, color 0.3s;
+           font-family: sans-serif;
+           margin: 0;
+           padding: 20px;
+        }
+
+header {
+    margin-bottom: 20px;
+}
+    </style>
+    <style>
+        :root {           
+            --text-color: #000000;            
+            --input-text: #000000;
+        }  
+        
+        body.highcontrast {
+            --text-color: #00ff00;                    
+            --input-text: #00ff00;
+            -moz-text-decoration-color: #00ff00;
+            
+        }
+    </style>
+
 </head>
 
-<body onload="iniciarPerfil()">
+<body onload="initProfile()">
 
     <h1 class="title">Perfil</h1><br>
 
@@ -149,31 +218,21 @@
     <div class="userTheme">
     </select>
     <label for="userTheme">Tema:</label>
-    <select name="theme" id="userTheme">
-        <option value="Claro">Claro</option>
-        <option value="Escuro">Escuro</option>
+    <select name="theme" id="theme">
+        <option value="light">Light</option>
+        <option value="sepia">Sepia</option>
+        <option value="amoled"> Dark</option>
     </select></div>
 
     <br><br>
 
-    <div class="userFormat">
+    <div class="font">
     </select>
-    <label for="userFormat">Cor da Fonte:</label>
-    <select name="format" id="userFormat">
-        <option value="Azul">Azul</option>
-        <option value="Preto">Escuro</option>
-        <option value="Verde">Verde</option>
-    </select></div>
+    <label for="font">Cor da Fonte:</label>
+    <select name="theme" id="font">
+        <option value="root">Padrão</option>
+        <option value="highcontrast">Alto Contraste</option>  
 
-    <br><br>
-
-    <div class="userLang">
-    </select>
-    <label for="userLang">Idioma:</label>
-    <select name="lang" id="userLang">
-        <option value="Português">Português</option>
-        <option value="English">English</option>
-        <option value="Espanhol">Espanhol</option>
     </select></div>
 
     <br><br>

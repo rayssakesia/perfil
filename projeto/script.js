@@ -1,12 +1,10 @@
-// script.js (Lógica Compartilhada)
 function createUser() {
     const user = {
         name: document.getElementById("name").value.trim(),
         age: document.getElementById("age").value,
         email: document.getElementById("email").value.trim(),
-        theme: document.getElementById("userTheme").value,
-        format: document.getElementById("userFormat").value,
-        lang: document.getElementById("userLang").value
+        theme: document.getElementById("theme").value,
+ 
     };
 
     if (!validateUser(user)) {
@@ -81,7 +79,7 @@ function goToUserProfile(email) {
 
 }
 
-function iniciarPerfil() {
+function initProfile() {
     const emailTemp = localStorage.getItem("temporary_email");
     console.log(emailTemp);
 
@@ -91,19 +89,97 @@ function iniciarPerfil() {
     }
     const user = JSON.parse(localStorage.getItem(emailTemp));
 
-    console.log(user);
-
     document.getElementById("email").value = user.email;
     document.getElementById("name").value = user.name;
     document.getElementById("age").value = user.age;
-    document.getElementById("userTheme").value = user.theme;
-    document.getElementById("userFormat").value = user.format;
-    document.getElementById("userLang").value = user.lang;
+    document.getElementById("theme").value = user.theme;
 }
 
-function showPage(p) {
-  document.querySelectorAll('.page').forEach(div => div.style.display = 'none');
-  document.getElementById('page' + p).style.display = 'block';
+const themeSelect = document.getElementById('theme');
+const body = document.body;
+const localStorageKey = 'themePreference';
+
+function applyTheme(theme) {
+    if (theme === 'light') {
+        body.classList.remove('sepia');
+        body.classList.remove('dark');
+        body.classList.remove('amoled');
+        body.classList.add('light');
+            
+    }  if (theme === 'sepia') {
+        body.classList.remove('dark');
+        body.classList.remove('light');
+        body.classList.remove('amoled');
+        body.classList.add('sepia');
+
+    }  if (theme === 'amoled') {
+        body.classList.remove('dark');
+        body.classList.remove('light');
+        body.classList.remove('sepia');
+        body.classList.add('amoled');
+    }
+     else {
+        
+    }
 }
 
-object.addEventListener("load", iniciarPerfil);
+function loadTheme() {
+    const savedTheme = localStorage.getItem(localStorageKey);
+    
+    if (savedTheme) {
+        themeSelect.value = savedTheme;
+        applyTheme(savedTheme);
+    }
+}
+
+themeSelect.addEventListener('change', function() {
+        const selectedTheme = this.value;
+
+        localStorage.setItem(localStorageKey, selectedTheme);
+        applyTheme(selectedTheme);
+    
+});
+
+loadTheme();
+
+const fontSelect = document.getElementById('font');
+const bodyFont = document.bodyFont;
+const localStorageKeyFont = 'fontPreference';
+
+function applyFont(font) {
+    if (font === 'root') {
+        body.classList.remove('highcontrast');
+        body.classList.remove('dark');
+        body.classList.add('root');
+            
+    }  if (font === 'highcontrast') {
+        body.classList.remove('dark');
+        body.classList.remove('light');
+        body.classList.add('highcontrast');
+
+    }
+     else {
+        
+    }
+}
+
+function loadColorFont() {
+    const savedFont = localStorage.getItem(localStorageKeyFont);
+    
+    if (savedFont) {
+        fontSelect.value = savedFont;
+        applyFont(savedFont);
+    }
+}
+
+fontSelect.addEventListener('change', function() {
+        const selectedFont = this.value;
+
+        localStorage.setItem(localStorageKeyFont, selectedFont);
+        applyFont(selectedFont);
+    
+});
+
+loadColorFont();
+
+object.addEventListener("load", initProfile);
